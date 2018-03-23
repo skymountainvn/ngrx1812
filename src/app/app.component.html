@@ -1,7 +1,7 @@
 <div class="container">
   <br>
   <app-word-form></app-word-form>
-  <div *ngFor="let word of words">
+  <div *ngFor="let word of (words | async)">
     <app-word [wordInfo]="word"></app-word>
   </div>
 </div>
