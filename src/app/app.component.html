@@ -1,0 +1,8 @@
+<div class="container">
+  <br>
+  <app-word-form></app-word-form>
+  <div *ngFor="let word of words">
+    <app-word [wordInfo]="word"></app-word>
+  </div>
+  <!-- <app-parent></app-parent> -->
+</div>
