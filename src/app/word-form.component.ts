@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
-import { AppState } from './types';
+import { AppState, Word } from './types';
 
 @Component({
     selector: 'app-word-form',
@@ -9,6 +9,7 @@ import { AppState } from './types';
     <div class="form-group" style="width: 200px">
         <button
           class="btn btn-success form-control"
+          (click)="showForm();"
           *ngIf="!(shouldShowForm | async)"
         >
           Add word
@@ -20,6 +21,7 @@ import { AppState } from './types';
           <br>
           <button
             class="btn btn-success form-control"
+            (click)="addWord();"
           >
             Add word
           </button>
@@ -27,6 +29,7 @@ import { AppState } from './types';
           <br>
           <button
             class="btn btn-danger form-control"
+            (click)="hideForm();"
           >
             Cancel
           </button>
@@ -42,7 +45,22 @@ export class WordFormComponent {
   constructor(private store: Store<AppState>){
     this.shouldShowForm = this.store.select('shouldShowForm');
   }
-
+  
   txtEn = '';
   txtVn = '';
+  showForm() { this.store.dispatch({ type: 'SHOW_FORM' }); }
+  hideForm() { this.store.dispatch({ type: 'HIDE_FORM' }); }
+
+  addWord() {
+    const { txtEn, txtVn } = this;
+    const word: Word = {
+      _id: Math.random() + '',
+      en: txtEn,
+      vn: txtVn,
+      isMemorized: false
+    };
+    this.store.dispatch({ type: 'ADD_WORD', word });
+    this.txtEn = '';
+    this.txtVn = '';
+  }
 }

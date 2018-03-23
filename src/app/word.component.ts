@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState, Word } from './types';
 
 @Component({
     selector: 'app-word',
@@ -8,10 +10,10 @@ import { Component, Input } from '@angular/core';
               {{ wordInfo.en }}
             </h4>
             <p>{{ wordInfo.vn }}</p>
-            <button class="btn btn-danger">
+            <button class="btn btn-danger" (click)="removeWord();">
               Remove
             </button>
-            <button class="btn btn-success">
+            <button class="btn btn-success" (click)="toggleWord();">
               Toggle
             </button>
         </div>
@@ -19,5 +21,15 @@ import { Component, Input } from '@angular/core';
 })
 
 export class WordComponent {
-  @Input() wordInfo: any;
+  @Input() wordInfo: Word;
+
+  constructor(private store: Store<AppState>){}
+
+  removeWord() {
+    this.store.dispatch({ type: 'REMOVE_WORD', _id: this.wordInfo._id });
+  }
+
+  toggleWord() {
+    this.store.dispatch({ type: 'TOGGLE_WORD', _id: this.wordInfo._id });
+  }
 }
