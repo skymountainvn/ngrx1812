@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const { json } = require('body-parser');
 
 const { wordRouter } = require('./controllers/word.route');
 
 const app = express();
+app.use(cors());
 app.use(json());
 
 app.use('/word', wordRouter);
