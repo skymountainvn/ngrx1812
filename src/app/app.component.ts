@@ -10,8 +10,22 @@ import { Word, AppState } from './types';
 })
 
 export class AppComponent {
-  words: Observable<Word[]>;
+  words: Word[];
+  filterStatus: string;
+
   constructor(private store: Store<AppState>) {
-    this.words = this.store.select('words');
+    this.store.select('words')
+    .subscribe(words => this.words = words);
+  
+    this.store.select('filterStatus')
+    .subscribe(filterStatus => this.filterStatus = filterStatus);
+  }
+
+  get filteredWords(): Word[] {
+    return this.words.filter(word => {
+      if (this.filterStatus === 'SHOW_ALL') return true;
+      if (this.filterStatus === 'SHOW_FORGOT') return !word.isMemorized;
+      return word.isMemorized;
+    });
   }
 }
