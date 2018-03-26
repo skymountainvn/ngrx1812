@@ -2,7 +2,7 @@
   <br>
   <app-word-form></app-word-form>
   <app-word-filter></app-word-filter>
-  <div *ngFor="let word of (filteredWords | async)">
+  <div *ngFor="let word of filteredWords">
     <app-word [wordInfo]="word"></app-word>
   </div>
 </div>
