@@ -13,6 +13,8 @@ import { shouldShowFormReducer } from './ngrx/shouldShowFormReducer';
 import { filterStatusReducer } from './ngrx/filterStatusReducer';
 import { wordsReducer } from './ngrx/wordsReducer';
 
+import { WordService } from './word.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,7 @@ import { wordsReducer } from './ngrx/wordsReducer';
       filterStatus: filterStatusReducer
     })
   ],
-  providers: [],
+  providers: [WordService],
   bootstrap: [AppComponent]
 })
 
