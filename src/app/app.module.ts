@@ -6,22 +6,26 @@ import { StoreModule } from '@ngrx/store';
 import { AppComponent } from './app.component';
 import { WordComponent } from './word.component';
 import { WordFormComponent } from './word-form.component';
+import { WordFilterComponent } from './word-filter.component';
 
 import { shouldShowFormReducer } from './ngrx/shouldShowFormReducer';
+import { filterStatusReducer } from './ngrx/filterStatusReducer';
 import { wordsReducer } from './ngrx/wordsReducer';
 
 @NgModule({
   declarations: [
     AppComponent,
     WordComponent,
-    WordFormComponent
+    WordFormComponent,
+    WordFilterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     StoreModule.forRoot({
       shouldShowForm: shouldShowFormReducer,
-      words: wordsReducer
+      words: wordsReducer,
+      filterStatus: filterStatusReducer
     })
   ],
   providers: [],
