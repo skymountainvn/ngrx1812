@@ -1,13 +1,14 @@
-<form class="form-group" style="margin: 10px">
+<form class="form-group" style="margin: 10px" [formGroup]="formSignIn">
   <div class="form-group">
     <label for="">Email</label>
-    <input class="form-control" placeholder="Enter your email">
+    <input class="form-control" placeholder="Enter your email" formControlName="email">
   </div>
   <div class="form-group">
     <label for="">Password</label>
-    <input type="password" class="form-control" placeholder="Enter your email">
+    <input type="password" class="form-control" placeholder="Enter your email" formControlName="password">
   </div>
   <button class="btn btn-success form-control">
     Sign In
   </button>
 </form>
+<pre>{{ this.formSignIn.value | json }}</pre>
