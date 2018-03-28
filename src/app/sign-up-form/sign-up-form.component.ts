@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors }
   templateUrl: './sign-up-form.component.html',
   styleUrls: ['./sign-up-form.component.css']
 })
+
 export class SignUpFormComponent implements OnInit {
   formSignUp: FormGroup;
   constructor(private fb: FormBuilder) { }
@@ -25,6 +26,18 @@ export class SignUpFormComponent implements OnInit {
   getShouldShowEmailWarning(controlName) {
     const emailControl = this.formSignUp.get(controlName);
     return emailControl.invalid && emailControl.touched;
+  }
+
+  get shouldShowPasswordWarning() {
+    const pw1 = this.formSignUp.get('password');
+    const pw2 = this.formSignUp.get('rePassword');
+    return pw1.valid && pw1.touched && pw2.dirty && pw1.value !== pw2.value;
+  }
+
+  get passwordMatched() {
+    const pw1 = this.formSignUp.get('password');
+    const pw2 = this.formSignUp.get('rePassword');
+    return pw1.value === pw2.value;
   }
 }
 

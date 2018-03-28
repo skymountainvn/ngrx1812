@@ -27,14 +27,18 @@
     <input
       type="password"
       class="form-control"
+      [class.warning]="shouldShowPasswordWarning"
       placeholder="Enter your password"
       formControlName="rePassword"
     >
     <div *ngIf="getShouldShowEmailWarning('rePassword')">
       <p class="text-danger">*Password không được bỏ trống</p>
     </div>
+    <div *ngIf="shouldShowPasswordWarning">
+      <p class="text-danger">*Password không trùng nhau</p>
+    </div>
   </div>
-  <button class="btn btn-success" [disabled]="!formSignUp.valid">
+  <button class="btn btn-success" [disabled]="!(formSignUp.valid && passwordMatched)">
     Sign Up
   </button>
 </form>
