@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -12,11 +12,11 @@ export class SignUpFormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.formSignUp = this.fb.group({
-      email: ['', gmail],
-      password: ['', Validators.required],
-      rePassword: ['', Validators.required]
-    });
+    this.formSignUp = new FormGroup ({
+      email: new FormControl('', gmail),
+      password: new FormControl('', Validators.required),
+      rePassword: new FormControl('', Validators.required)
+    }, passwordsMustMatch);
   }
   
   onSubmitForm() {
@@ -27,22 +27,16 @@ export class SignUpFormComponent implements OnInit {
     const emailControl = this.formSignUp.get(controlName);
     return emailControl.invalid && emailControl.touched;
   }
+}
 
-  get shouldShowPasswordWarning() {
-    const pw1 = this.formSignUp.get('password');
-    const pw2 = this.formSignUp.get('rePassword');
-    return pw1.valid && pw1.touched && pw2.dirty && pw1.value !== pw2.value;
-  }
-
-  get passwordMatched() {
-    const pw1 = this.formSignUp.get('password');
-    const pw2 = this.formSignUp.get('rePassword');
-    return pw1.value === pw2.value;
-  }
+function passwordsMustMatch(formGroup: FormGroup) : ValidationErrors | null {
+  const pw1 = formGroup.get('password');
+  const pw2 = formGroup.get('rePassword');
+  if (pw1.value !== pw2.value) return { error: 'passwordsMustMatch' };
+  return null;
 }
 
 function gmail(control: AbstractControl): ValidationErrors | null {
   if ((control.value as string).trim().endsWith('@gmail.com')) return null;
   return { error: 'gmail' };
-
 }
