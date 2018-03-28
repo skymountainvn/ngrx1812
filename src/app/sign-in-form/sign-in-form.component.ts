@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -12,9 +12,17 @@ export class SignInFormComponent implements OnInit {
 
   ngOnInit() {
     this.formSignIn = this.fb.group({
-      email: '',
-      password: ''
+      email: ['', Validators.email],
+      password: ['', Validators.required]
     });
   }
+  
+  onSubmitForm() {
+    console.log(this.formSignIn.value);
+  }
 
+  getShouldShowEmailWarning(controlName) {
+    const emailControl = this.formSignIn.get(controlName);
+    return emailControl.invalid && emailControl.touched;
+  }
 }
