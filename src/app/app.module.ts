@@ -14,13 +14,15 @@ import { filterStatusReducer } from './ngrx/filterStatusReducer';
 import { wordsReducer } from './ngrx/wordsReducer';
 
 import { WordService } from './word.service';
+import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WordComponent,
     WordFormComponent,
-    WordFilterComponent
+    WordFilterComponent,
+    SignInFormComponent
   ],
   imports: [
     BrowserModule,
