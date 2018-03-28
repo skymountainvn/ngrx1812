@@ -15,6 +15,7 @@ import { wordsReducer } from './ngrx/wordsReducer';
 
 import { WordService } from './word.service';
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
+import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
     WordComponent,
     WordFormComponent,
     WordFilterComponent,
-    SignInFormComponent
+    SignInFormComponent,
+    SignUpFormComponent
   ],
   imports: [
     BrowserModule,
