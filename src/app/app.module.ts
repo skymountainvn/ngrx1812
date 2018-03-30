@@ -17,6 +17,10 @@ import { WordService } from './word.service';
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 
+// screens
+import { WordListComponent } from './word-list.component';
+import { WordDetailComponent } from './word-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +28,9 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
     WordFormComponent,
     WordFilterComponent,
     SignInFormComponent,
-    SignUpFormComponent
+    SignUpFormComponent,
+    WordListComponent,
+    WordDetailComponent
   ],
   imports: [
     BrowserModule,
