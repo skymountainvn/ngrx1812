@@ -5,3 +5,7 @@
 .thin { font-weight: 300; }
 
 .green { color: green; }
+
+a.active {
+    font-weight: bold;
+}

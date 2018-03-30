@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Word, AppState } from './types';
 
 import { WordService } from './word.service';
+import { Person } from './Person';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { WordService } from './word.service';
 export class AppComponent {
   words: Word[];
   filterStatus: string;
+  people = Person.people;
   constructor(
     private store: Store<AppState>,
     private wordService: WordService

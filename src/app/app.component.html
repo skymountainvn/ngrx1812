@@ -6,6 +6,20 @@
     <app-word [wordInfo]="word"></app-word>
   </div>
 </div> -->
-<div class="container">
+<!-- <div class="container">
   <app-sign-up-form></app-sign-up-form>
-</div>
+</div> -->
+<nav>
+  <a
+    routerLink="/"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }">Home</a>
+  <a routerLink="/list" routerLinkActive="active">List</a>
+  <br>
+  <ul>
+    <li *ngFor="let person of people">
+      <a routerLink="/detail/{{ person._id }}" routerLinkActive="active">{{ person.name }}</a>
+    </li>
+  </ul>
+</nav>
+<router-outlet></router-outlet>
