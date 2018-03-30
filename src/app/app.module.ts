@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+
 import { HttpModule } from '@angular/http';
 import { StoreModule } from '@ngrx/store';
 
@@ -21,6 +23,11 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import { WordListComponent } from './word-list.component';
 import { WordDetailComponent } from './word-detail.component';
 
+const routesConfig: Routes = [
+  { path: '/list', component: WordListComponent },
+  { path: '/detail', component: WordDetailComponent },
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +44,7 @@ import { WordDetailComponent } from './word-detail.component';
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
+    RouterModule.forRoot(routesConfig),
     StoreModule.forRoot({
       shouldShowForm: shouldShowFormReducer,
       words: wordsReducer,
