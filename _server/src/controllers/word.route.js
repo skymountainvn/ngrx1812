@@ -16,15 +16,15 @@ wordRouter.post('/', (req, res) => {
     .catch(error => res.status(400).send({ success: false, message: error.message }));
 });
 
-// wordRouter.put('/:_id', (req, res) => {
-//     const { content } = req.body;
-//     Word.findByIdAndUpdate(req.params._id, { content })
-//     .then(story => {
-//         if (!story) throw new Error('Cannot find story.');
-//         res.send({ success: true, story });
-//     })
-//     .catch(error => res.status(400).send({ success: false, message: error.message }));
-// });
+wordRouter.put('/:_id',(req, res) => {
+    const { isMemorized } = req.body;
+    Word.findByIdAndUpdate(req.params._id, { isMemorized })
+    .then(story => {
+        if (!story) throw new Error('Cannot find story.');
+        res.send({ success: true, story });
+    })
+    .catch(error => res.status(400).send({ success: false, message: error.message }));
+});
 
 wordRouter.delete('/:_id', (req, res) => {
     Word.findByIdAndRemove(req.params._id)
