@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { AppState, Word } from './types';
+import { WordService } from './word.service';
 
 @Component({
     selector: 'app-word-form',
@@ -42,7 +43,7 @@ import { AppState, Word } from './types';
 export class WordFormComponent {
   shouldShowForm: Observable<boolean>;
   
-  constructor(private store: Store<AppState>){
+  constructor(private store: Store<AppState>, private wordService: WordService){
     this.shouldShowForm = this.store.select('shouldShowForm');
   }
   
@@ -53,14 +54,6 @@ export class WordFormComponent {
 
   addWord() {
     const { txtEn, txtVn } = this;
-    const word: Word = {
-      _id: Math.random() + '',
-      en: txtEn,
-      vn: txtVn,
-      isMemorized: false
-    };
-    this.store.dispatch({ type: 'ADD_WORD', word });
-    this.txtEn = '';
-    this.txtVn = '';
+    this.wordService.addWord(txtEn, txtVn);
   }
 }

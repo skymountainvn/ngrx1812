@@ -28,4 +28,15 @@ export class WordService {
             this.store.dispatch({ type: 'SET_WORDS', words: resJson.words });
         });
     }
+
+    addWord(en: string, vn: string) {
+        const URL = 'http://localhost:3000/word';
+        return this.http.post(URL, { en, vn })
+        .toPromise()
+        .then(response => response.json())
+        .then(resJson => {
+            if (!resJson.success) return;
+            this.store.dispatch({ type: 'ADD_WORD', word: resJson.word });
+        });
+    }
 }
