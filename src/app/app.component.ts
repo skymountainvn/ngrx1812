@@ -26,7 +26,7 @@ export class AppComponent {
     this.store.select('filterStatus')
     .subscribe(filterStatus => this.filterStatus = filterStatus);
 
-    // this.wordService.getWords();
+    this.wordService.getWords();
   }
 
   get filteredWords(): Word[] {
